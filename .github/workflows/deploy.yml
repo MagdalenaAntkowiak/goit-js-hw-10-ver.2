@@ -7,9 +7,15 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3  # Zaktualizowana wersja akcji checkout
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3  # Zaktualizowana wersja akcji setup-node
+        with:
+          node-version: '20'  # Użyj najnowszej stabilnej wersji Node.js
 
       - name: Install and build 🔧
         run: |
@@ -17,7 +23,7 @@ jobs:
           npm run build
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+        uses: JamesIves/github-pages-deploy-action@v4.4.3  # Zaktualizowana wersja akcji deploy
         with:
           branch: gh-pages
           folder: dist
